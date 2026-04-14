@@ -110,34 +110,3 @@ class ReportTotalSales extends Report {
 	}	
 
 }  //class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

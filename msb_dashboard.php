@@ -325,4 +325,3 @@ class MSB_Dashboard {
 } //class
 
 new MSB_Dashboard($wpdb);
-?>
