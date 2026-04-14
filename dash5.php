@@ -16,7 +16,7 @@ $config = (new Config())->msb_config($mkt);
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>	
  
 <!-- <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@31.2.0/dist/ag-grid-community.min.js"></script>	 -->
-<script src="https://cdn.jsdelivr.net/npm/ag-grid-community@35.2.0/dist/ag-grid-community.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ag-grid-community@34.2.0/dist/ag-grid-community.min.js"></script>
 
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/tippy.js@6"></script>
