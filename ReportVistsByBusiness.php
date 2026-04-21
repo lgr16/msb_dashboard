@@ -12,7 +12,7 @@ class ReportVisitsByBusiness extends Report {
 		WHERE dateHourMinute > %s AND market 
 		sql;
 
-		$sql = $sql .  $mc["market"] . " GROUP BY Rep_Name";	
+		$sql = $sql .  $mc["market"] . " AND Rep_Name is not null" . " GROUP BY Rep_Name";	
 		
 		$this->add_arg($this->config["order_date"] );
 		$this->add_arg($mc["campaigns"]);
