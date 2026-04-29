@@ -45,7 +45,7 @@ class ReportSalesByProducts extends Report{
 			COALESCE(prm.meta_value, b.Station) AS Station,
 			b.Sales	as Sales	
 		FROM (		
-		select a.order_item_name as Station, CASE WHEN pst.post_parent > 0 THEN pst.post_parent ELSE a.product_id END as parent_product_id ,  sum(a.ItemTotal) as Sales from (
+		select a.order_item_name as Station, a.product_id ,  sum(a.ItemTotal) as Sales from (
 		select p.ID,
 		MAX(CASE WHEN pm.meta_key = 'hdb_sales_rep' AND oi.order_id = pm.order_id  THEN pm.meta_value END) as SalesRep,
 		MAX(CASE WHEN im.meta_key = '_line_total' AND oi.order_id = pm.order_id  THEN im.meta_value END) as ItemTotal,
@@ -60,13 +60,12 @@ class ReportSalesByProducts extends Report{
 		pm.meta_key = "hdb_sales_rep" AND 
 		oi.order_item_type != 'tax'
 		group by oi.order_item_name, p.ID ) a 
-		inner join {$prefix}hdb_sales_reps as sr on sr.repID = a.SalesRep
-		LEFT JOIN {$prefix}posts as pst on pst.ID = a.product_id
+		inner join  {$prefix}hdb_sales_reps as sr on sr.repID = a.SalesRep
 		WHERE sr.active=1 and sr.market = %s
-		group by CASE WHEN pst.post_parent > 0 THEN pst.post_parent ELSE a.product_id END
+		group by a.order_item_name, a.product_id
 		order by Sales DESC		
 		) b
-		LEFT JOIN {$prefix}postmeta as prm on prm.post_id = b.parent_product_id AND prm.meta_key = '_sku'
+		LEFT JOIN {$prefix}postmeta as prm on prm.post_id = b.product_id AND prm.meta_key = '_sku'
 		sql;
 		
 		return $sql;
@@ -112,3 +111,33 @@ class ReportSalesByProducts extends Report{
 	}
 	
 }//class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

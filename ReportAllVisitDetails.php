@@ -33,8 +33,11 @@ class ReportAllVisitDetails extends Report {
 		
 		$psql = $this->getsql($this->config["blogPrefix"]);
 		
-		//write_log($psql);
-		
+		// write_log($psql);
+		// $temp = $this->db->remove_placeholder_escape($psql);
+		// write_log($temp);
+
+
 		$results = $this->db->get_results($psql);
 		
 		

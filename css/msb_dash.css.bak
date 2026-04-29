@@ -98,13 +98,12 @@
 	border-radius: 100%;
 	text-align: center;
 	margin: 5px ;
-	font-size: 14px;
+	font-size: 12px;
 	padding: 12px;
 	display: flex;
 	height: 18px;
 	width: 18px;
 	color: #fff;
-    font-family: Consolas, Courier New, serif;
 	}
 	.hdb_circleGroup {
 	justify-content: center;

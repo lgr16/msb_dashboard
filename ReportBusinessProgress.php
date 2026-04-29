@@ -4,7 +4,7 @@ include_once("Report.php");
 
 class ReportBusinessProgress extends Report{
 	
-	protected $progressDescriptor = [1=>"V", 2=>"P", 3=>"S", 4=>"C", 5=>"O"];
+	protected $progressDescriptor = [1=>"V", 2=>"I", 3=>"P", 4=>"S", 5=>"C", 6=>"O"];
 
 	protected function getsql($prefix){
 		
@@ -15,11 +15,11 @@ class ReportBusinessProgress extends Report{
 		$sql = <<<sql
 		SELECT rep_name, business, Max(
 			CASE
-				WHEN page like "%/order-received/%"        THEN 5
-				WHEN page like "%checkout%/"                         THEN 4  
-				WHEN page like "%cart%/"                             THEN 3
-				WHEN locate("/product/", page) > 0                  THEN 2    
-				WHEN page like "/sale/_%"                    THEN 2    				
+				WHEN page like "%/order-received/%"   THEN 6
+				WHEN page like "%checkout%/"          THEN 5
+				WHEN page like "%cart%/"              THEN 4
+				WHEN locate("/product/", page) > 0    THEN 3
+				WHEN page like "/sale/_%"             THEN 2
 				ELSE 1
 			END) as progress,
 			MAX(Date_Format(convert_tz(dateHourMinute, %s, %s), "%%Y-%%m-%%d %%H:%%i:%%s" ) ) as "Date"
@@ -67,7 +67,7 @@ class ReportBusinessProgress extends Report{
 
 		$rval = "<div class='hdb_circles'>";
 		
-		for($i=1;$i<=5; $i++ ){
+		for($i=1;$i<=6; $i++ ){
 			$active = ($i <= $progressNumber) ? "hdb_active" : "";
 			$rval .= "<div class='hdb_circle-with-text ". $active ."'>". $this->progressDescriptor[$i] ."</div>";
 		}
@@ -108,41 +108,3 @@ class ReportBusinessProgress extends Report{
 
 	
 } //class
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

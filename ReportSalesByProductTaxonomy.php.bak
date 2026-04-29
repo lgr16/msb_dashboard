@@ -16,8 +16,8 @@ class ReportSalesByProductTaxonomy extends Report{
 			ON oi.order_item_id = oim.order_item_id
 		INNER JOIN {$prefix}woocommerce_order_itemmeta AS oim_price
 			ON oi.order_item_id = oim_price.order_item_id
-		INNER JOIN {$prefix}wc_orders AS o 
-			ON o.id = oi.order_id AND o.type = 'shop_order' AND o.status in ('wc-on-hold', 'wc-processing', 'wc-completed')
+		INNER JOIN {$prefix}wc_orders AS o
+			ON o.id = oi.order_id
 		INNER JOIN {$prefix}term_relationships AS tr
 			ON tr.object_id = oim.meta_value
 		INNER JOIN {$prefix}term_taxonomy AS tt
@@ -41,15 +41,14 @@ class ReportSalesByProductTaxonomy extends Report{
 	public function getsql_parentcat($prefix){
 		#by Parent Category
 		$sql_parent_cat = <<<sql_parent_cat
-		SELECT a.Grouping, SUM(a.Sales) FROM (
-		SELECT distinct t.name as Grouping, o.id,  oi.order_item_name , oim_price.meta_value as Sales
+		SELECT t.name as Grouping, SUM(oim_price.meta_value) as Sales
 		FROM {$prefix}woocommerce_order_items AS oi
 		INNER JOIN {$prefix}woocommerce_order_itemmeta AS oim
 			ON oi.order_item_id = oim.order_item_id
 		INNER JOIN {$prefix}woocommerce_order_itemmeta AS oim_price
 			ON oi.order_item_id = oim_price.order_item_id
 		INNER JOIN {$prefix}wc_orders AS o
-			ON o.id = oi.order_id AND o.type = 'shop_order' AND o.status in ('wc-on-hold', 'wc-processing', 'wc-completed')
+			ON o.id = oi.order_id
 		INNER JOIN {$prefix}term_relationships AS tr
 			ON tr.object_id = oim.meta_value
 		INNER JOIN {$prefix}term_taxonomy AS tt
@@ -65,7 +64,7 @@ class ReportSalesByProductTaxonomy extends Report{
 		sql_parent_cat;
 		
 
-		$sql_parent_cat = $sql_parent_cat . $this->sqlhelper_in($this->config["SalesByTaxIDs"]).') a GROUP BY a.Grouping ORDER BY Sales DESC;';
+		$sql_parent_cat = $sql_parent_cat . $this->sqlhelper_in($this->config["SalesByTaxIDs"]).' GROUP BY t.name ORDER BY Sales DESC;';
 
 		return $sql_parent_cat;
 	}
@@ -128,3 +127,40 @@ class ReportSalesByProductTaxonomy extends Report{
 		return $rows;
 	}
 }
+
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

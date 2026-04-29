@@ -3,13 +3,15 @@
 * Plugin Name: MSB Dashboard
 * Plugin URI: 
 * Description: Live Sales and Analytics Data in Charts
-* Version: 1.0.24
+* Version: 1.0.25
 * Author: Brad
 * Author URI: 
 **/
 
 /*
 Change Log:
+1.0.25
+- getting all markets report digital back in action
 1.0.24
 -hardening dbconnection code
 1.0.23
@@ -68,7 +70,7 @@ class MSB_Dashboard {
     {
 		$this->db = $wp_dataObject;			
 		$this->config = new Config();
-		$this->ver = "1.0.24";
+		$this->ver = "1.0.25";
 		
 		add_shortcode('msb_dashboard',array($this, 'dash_shortcode') );
 		add_action( 'wp_enqueue_scripts', array( $this ,'register_scripts'));

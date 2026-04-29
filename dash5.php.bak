@@ -128,12 +128,6 @@ const ajax_object = {
 							<div class="hdb_circle-with-text">
 								V
 							</div>Visit</div>
-
-							<div class="hdb_circleGroup">
-							<div class="hdb_circle-with-text">
-								I
-							</div>Interest</div>
-
 							<div class="hdb_circleGroup">
 							<div class="hdb_circle-with-text">
 								P
@@ -228,7 +222,7 @@ const ajax_object = {
 			</div>
 			<div class="col-lg-6 col-med-12">
 				<div class="shadow p-3 mb-3 bg-white rounded">
-					<h4>Order Line Items by Market</h4>
+					<h4>Orders by Market</h4>
 					<div class="chart d-flex justify-content-center mt-4" id="allMarketsOrders_div"></div>
 				</div>
 			</div>
